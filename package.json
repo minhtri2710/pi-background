@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Background shell tasks for Pi.",
   "type": "module",
-  "keywords": ["pi-package"],
+  "keywords": [
+    "pi-package"
+  ],
   "license": "MIT",
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",
@@ -11,6 +13,19 @@
     "typebox": "*"
   },
   "pi": {
-    "extensions": ["./background.ts"]
+    "extensions": [
+      "./background.ts"
+    ]
+  },
+  "scripts": {
+    "test": "node --test *.test.ts",
+    "typecheck": "tsc -p ."
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "1.6.1",
+    "@earendil-works/pi-tui": "1.6.1",
+    "@types/node": "^22.19.0",
+    "typebox": "1.4.7",
+    "typescript": "^7.0.2"
   }
 }
