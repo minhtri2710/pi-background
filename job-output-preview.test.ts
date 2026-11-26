@@ -1,13 +1,14 @@
-import { expect, test } from "bun:test";
+import assert from "node:assert/strict";
+import test from "node:test";
 import { previewJobOutput } from "./job-output-preview.ts";
 
 test("previews the latest non-empty output line", () => {
-	expect(previewJobOutput("first line\n  echo\tOK  \n\n")).toBe("echo OK");
+	assert.equal(previewJobOutput("first line\n  echo\tOK  \n\n"), "echo OK");
 });
 
 test("marks missing output and truncates long previews", () => {
-	expect(previewJobOutput("\n  \n")).toBe("waiting for output");
+	assert.equal(previewJobOutput("\n  \n"), "waiting for output");
 	const preview = previewJobOutput("x".repeat(60));
-	expect(Array.from(preview)).toHaveLength(56);
-	expect(preview.endsWith("…")).toBe(true);
+	assert.equal(Array.from(preview).length, 56);
+	assert.ok(preview.endsWith("…"));
 });
